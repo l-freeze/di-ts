@@ -1,0 +1,22 @@
+{
+	"dependencies": {
+		"@types/node": "^22.5.5",
+		"better-sqlite3": "^11.3.0",
+		"drizzle-orm": "^0.33.0",
+		"nodemon": "^3.1.4",
+		"reflect-metadata": "^0.2.2",
+		"ts-node": "^10.9.2",
+		"tsyringe": "^4.8.0",
+		"typescript": "^5.6.2",
+		"uuid": "^10.0.0"
+	},
+	"scripts": {
+		"start": "npm run build:live",
+		"build": "tsc -p .",
+		"build:live": "nodemon --watch 'src/**/*.ts' --exec \"ts-node\" src/index.ts"
+	},
+	"devDependencies": {
+		"@types/better-sqlite3": "^7.6.11",
+		"drizzle-kit": "^0.24.2"
+	}
+}
