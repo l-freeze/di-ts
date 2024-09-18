@@ -1,6 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import { IProductRepository } from '../../../domain/repository/IProductRepository';
 import {Input} from "./IO";
+import {Product} from "../../../domain/Entity/Product";
 
 @injectable()
 export class Interactor {
@@ -10,6 +11,7 @@ export class Interactor {
 
     async execute(input: Input): Promise<void> {
 
-        await this.productRepository.save(input.name, input.description);
+        let product = Product.create(input.name, input.description);
+        await this.productRepository.save(product);
     }
 }

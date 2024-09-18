@@ -1,13 +1,13 @@
 export class ProductDescription {
-    private name: string;
-    private constructor(value: string) {
-        this.name = value;
+    private constructor(
+        public readonly value: string
+    ) {
     }
 
-    create(name: string): ProductDescription {
-        if (40 < name.length && name.length < 255) {
-            throw new Error('Product name must be between 40 and 255 characters');
+    static create(input: string): ProductDescription {
+        if (input.length <= 20 && 255 < input.length) {
+            throw new Error('Product name must be between 20 and 255 characters');
         }
-        return new ProductDescription(name);
+        return new ProductDescription(input);
     }
 }

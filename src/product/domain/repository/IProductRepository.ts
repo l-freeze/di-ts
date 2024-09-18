@@ -1,4 +1,6 @@
+import {Product} from "../Entity/Product";
+
 export interface IProductRepository
 {
-    save(name: string, description: string): Promise<boolean>;
+    save(product: Product): Promise<boolean>;
 }

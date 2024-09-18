@@ -1,17 +1,20 @@
-//import { drizzle } from 'drizzle-orm/better-sqlite3';
-import { product } from '../../../database/schema';
+import { product as table } from '../../../database/schema';
 import { db } from '../../../database/db';
 import { IProductRepository } from "../domain/repository/IProductRepository";
+import {Product} from "../domain/Entity/Product";
 
-type NewProduct = typeof product.$inferInsert;
+type NewProduct = typeof table.$inferInsert;
 export class SqliteProductRepository implements IProductRepository
 {
-    async save(name: string, description: string): Promise<boolean>
+    async save(product: Product): Promise<boolean>
     {
 
-        const data: NewProduct = {name, description};
-        await db.insert(product).values(data);
-        console.log(`[SAVE:sqlite]: ${name}, description: ${description}`);
+        const data: NewProduct = {
+            'name': product.name.value,
+            'description': product.description.value
+        };
+        await db.insert(table).values(data);
+        console.log(`[SAVE:sqlite]: ${product.name.value}, description: ${product.description.value}`);
         return true;
     }
 }
